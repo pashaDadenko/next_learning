@@ -2,15 +2,15 @@ import { FC } from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Home | next learning',
+	title: 'About | next learning',
 };
 
-const Home: FC = () => {
+const About: FC = () => {
 	return (
 		<>
-			<h1>Home</h1>
+			<h1>Select</h1>
 		</>
 	);
 };
 
-export default Home;
+export default About;

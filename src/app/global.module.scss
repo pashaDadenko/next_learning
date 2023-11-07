@@ -1,0 +1,16 @@
+.reset {
+	margin: 0;
+	padding: 0;
+	background-color: #0000002f;
+	position: relative;
+	min-height: 100vh;
+	a {
+		text-decoration: none;
+	}
+}
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 50px;
+}
