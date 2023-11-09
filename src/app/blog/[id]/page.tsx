@@ -5,29 +5,21 @@ type Props = {
 		id: string;
 	};
 };
-export const generateMetadata = async ({ params: { id } }: Props) => {
-	const post: Posts = await getData(id);
 
-	return {
-		title: post.title,
-	};
-};
-
-type Posts = {
+type Post = {
 	userId: number;
 	id: number;
 	title: string;
 	body: string;
 };
 
-const getData = async (id: string) => {
-	const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { next: { revalidate: 60 } });
-
-	return response.json();
-};
-
 const Post: FC<Props> = async ({ params: { id } }) => {
-	const post: Posts = await getData(id);
+	const getData = async (id: string) => {
+		const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { next: { revalidate: 60 } });
+		return response.json();
+	};
+
+	const post: Post = await getData(id);
 
 	return (
 		<>

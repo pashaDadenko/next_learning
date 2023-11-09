@@ -1,0 +1,14 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 50px;
+	height: 100%;
+	.link {
+		color: #fff;
+		font-size: 25px;
+	}
+	.active {
+		color: #ffffff54;
+	}
+}

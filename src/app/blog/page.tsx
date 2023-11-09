@@ -1,18 +1,8 @@
 import { FC } from 'react';
-import { Metadata } from 'next';
-import Link from 'next/link';
+import { Posts } from '@/components/Posts/Posts';
+import { Search } from '@/components/Search/Search';
 
-export const metadata: Metadata = {
-	title: 'Blog | next learning',
-};
-
-const getData = async () => {
-	const response = await fetch('https://jsonplaceholder.typicode.com/posts', { next: { revalidate: 60 } });
-
-	return response.json();
-};
-
-type Posts = {
+type TPosts = {
 	userId: number;
 	id: number;
 	title: string;
@@ -20,19 +10,18 @@ type Posts = {
 };
 
 const Blog: FC = async () => {
-	const posts: Posts[] = await getData();
+	const getData = async () => {
+		const response = await fetch('https://jsonplaceholder.typicode.com/posts', { next: { revalidate: 60 } });
+		return response.json();
+	};
+
+	const posts: TPosts[] = await getData();
 
 	return (
 		<>
 			<h1>Blog</h1>
-
-			<ul style={{ marginBottom: 100 }}>
-				{posts.map((post) => (
-					<li key={post.id}>
-						<Link href={`blog/${post.id}`}>{post.title}</Link>
-					</li>
-				))}
-			</ul>
+			<Search />
+			<Posts posts={posts} />
 		</>
 	);
 };

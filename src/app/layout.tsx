@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
+import { ReduxProvider } from '@/redux/ReduxProvider';
 
 import styles from './global.module.scss';
 
@@ -14,12 +15,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang='en'>
-			<body className={`${montserrat.className} ${styles.reset}`}>
-				<Header />
-				<main className={styles.container}>{children}</main>
-				<Footer />
-			</body>
-		</html>
+		<ReduxProvider>
+			<html lang='en'>
+				<body className={`${montserrat.className} ${styles.reset}`}>
+					<Header />
+					<main className={styles.container}>{children}</main>
+					<Footer />
+				</body>
+			</html>
+		</ReduxProvider>
 	);
 }
