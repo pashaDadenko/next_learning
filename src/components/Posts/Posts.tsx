@@ -4,18 +4,21 @@ import { FC } from 'react';
 import Link from 'next/link';
 import { RootState } from '@/redux/store';
 import { useSelector } from 'react-redux';
+import { useGetPostsQuery } from '@/redux/api';
 
-type TProps = {
+type TPosts = {
 	userId: number;
 	id: number;
 	title: string;
 	body: string;
 };
 
-export const Posts: FC<{ posts: TProps[] }> = ({ posts }) => {
+export const Posts: FC = () => {
+	const { data = [] } = useGetPostsQuery('');
+
 	const searchValue = useSelector((state: RootState) => state.searchSlice.searchValue);
 
-	const updatePosts = posts.filter((post: TProps) => typeof searchValue === 'string' && post.title.toLowerCase().includes(searchValue.toLowerCase()));
+	const updatePosts = data.filter((post: TPosts) => typeof searchValue === 'string' && post.title.toLowerCase().includes(searchValue.toLowerCase()));
 
 	return (
 		<ul style={{ marginBottom: 100 }}>

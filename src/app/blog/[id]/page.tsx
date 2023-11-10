@@ -1,32 +1,13 @@
 import { FC } from 'react';
+import { PostOne } from '@/components/PostOne/PostOne';
 
-type Props = {
-	params: {
-		id: string;
-	};
-};
+type Props = { params: { id: string } };
 
-type Post = {
-	userId: number;
-	id: number;
-	title: string;
-	body: string;
-};
-
-const Post: FC<Props> = async ({ params: { id } }) => {
-	const getData = async (id: string) => {
-		const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { next: { revalidate: 60 } });
-		return response.json();
-	};
-
-	const post: Post = await getData(id);
-
+const Post: FC<Props> = ({ params: { id } }) => {
 	return (
 		<>
 			<h1>Post № {id}</h1>
-
-			<h3>{post.title}</h3>
-			<p>{post.body}</p>
+			<PostOne id={id} />
 		</>
 	);
 };

@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type TSearchSlice = {
-	searchValue: number | string;
-};
+type TSearchSlice = { searchValue: number | string };
 
 export const searchSlice = createSlice({
 	name: 'search',
